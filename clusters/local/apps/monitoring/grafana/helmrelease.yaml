@@ -1,10 +1,11 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
+  namespace: monitoring
   name: grafana
   namespace: monitoring
 spec:
-  interval: 1m
+  interval: 5m
   chart:
     spec:
       chart: grafana
