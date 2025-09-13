@@ -28,24 +28,10 @@ With GitOps:
 - FluxCD continuously reconciles the cluster state with the Git repository.  
 - No manual `kubectl apply` for applications — Flux ensures consistency automatically.  
 
----
-
-## Repository Structure
-├── clusters/
-│ └── local/ # Definitions for the “local” cluster environment
-├── apps/ # Application manifests (nginx, wordpress, mysql, etc.)
-├── age.key # Private key for Age encryption
-├── age.pub # Public key for Age encryption
-├── mysql-secret.sops.yaml # Encrypted secret (for MySQL) using SOPS / Age
-└── README.md # This file
-
-
 - `clusters/local/` — manifests, configuration files for the “local” cluster  
 - `apps/` — applications like NGINX, WordPress, MySQL, ingress-nginx, monitoring, etc.  
 - `age.key` / `age.pub` — Age keypair for encryption/decryption  
 - `mysql-secret.sops.yaml` — example of an encrypted secret
-
----
 
 ## Prerequisites
 
