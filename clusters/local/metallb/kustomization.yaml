@@ -1,15 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
   - https://raw.githubusercontent.com/metallb/metallb/v0.13.13/config/manifests/metallb-native.yaml
 
 configMapGenerator:
   - name: metallb-config
-    literals:
-      - config= |
-          address-pools:
-            - name: default
-              protocol: layer2
-              addresses:
-                - 192.168.1.240-192.168.1.250
+    files:
+      - metallb-config.yaml
 
