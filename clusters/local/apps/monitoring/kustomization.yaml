@@ -1,10 +1,13 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: monitoring
   namespace: flux-system
-resources:
-  - grafana/kustomization.yaml
-  - prometheus/kustomization.yaml
-  - promtail/kustomization.yaml
-  - loki/kustomization.yaml
+spec:
+  interval: 1m
+  path: "./clusters/local/apps/monitoring/grafana"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system

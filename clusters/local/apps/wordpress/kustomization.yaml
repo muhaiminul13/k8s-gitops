@@ -1,9 +1,13 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: wordpress
   namespace: flux-system
-resources:
-  - wordpress-deployment.yaml
-  - wordpress-service.yaml
-  - ingress.yaml
+spec:
+  interval: 1m
+  path: "./apps/wordpress"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
