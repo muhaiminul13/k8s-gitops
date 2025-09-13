@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  namespace: mysql
 spec:
   replicas: 1
   selector:
@@ -13,10 +14,13 @@ spec:
         app: mysql
     spec:
       containers:
-      - name: mysql
-        image: mysql:8
-        envFrom:
-        - secretRef:
-            name: mysql-secret
-        ports:
-        - containerPort: 3306
+        - name: mysql
+          image: mysql:8.0
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
+          ports:
+            - containerPort: 3306
