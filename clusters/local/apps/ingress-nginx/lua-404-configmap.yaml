@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  404.lua: "\n    ngx.status = 302\n    ngx.header[\"Location\"] = \"https://www.google.com\"\n
+    \   return ngx.exit(302)\n  "
+kind: ConfigMap
+metadata:
+  name: ingress-nginx-404-lua
+  namespace: ingress-nginx

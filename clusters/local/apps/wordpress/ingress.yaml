@@ -1,0 +1,7 @@
+apiVersion: v1
+items: []
+kind: List
+metadata:
+  annotations:
+    nginx.org/lua-resty-redis: "/etc/nginx/lua/404.lua"
+  resourceVersion: ""

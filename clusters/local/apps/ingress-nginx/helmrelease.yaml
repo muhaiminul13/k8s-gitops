@@ -17,3 +17,15 @@ spec:
     controller:
       service:
         type: LoadBalancer
+controller:
+  extraVolumes:
+    - name: lua-scripts
+      configMap:
+        name: ingress-nginx-404-lua
+  extraVolumeMounts:
+    - name: lua-scripts
+      mountPath: /etc/nginx/lua
+      readOnly: true
+  config:
+    enable-underscores-in-headers: "true"
+    lua-resty-redis: "/etc/nginx/lua/404.lua"
