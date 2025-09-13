@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wordpress
-  namespace: default
 spec:
   replicas: 1
   selector:
@@ -14,20 +13,20 @@ spec:
         app: wordpress
     spec:
       containers:
-        - name: wordpress
-          image: wordpress:6.5-php8.2-apache
-          env:
-            - name: WORDPRESS_DB_HOST
-              value: mysql.default.svc.cluster.local
-            - name: WORDPRESS_DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secret
-                  key: username
-            - name: WORDPRESS_DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secret
-                  key: password
-          ports:
-            - containerPort: 80
+      - name: wordpress
+        image: wordpress:6.4
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: mysql
+        - name: WORDPRESS_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: username
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: password
+        ports:
+        - containerPort: 80

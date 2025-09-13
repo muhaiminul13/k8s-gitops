@@ -4,7 +4,6 @@ metadata:
   name: ingress-nginx
   namespace: ingress-nginx
 spec:
-  interval: 5m
   chart:
     spec:
       chart: ingress-nginx
@@ -13,6 +12,8 @@ spec:
         kind: HelmRepository
         name: ingress-nginx
         namespace: flux-system
-  valuesFrom:
-    - kind: ConfigMap
-      name: ingress-nginx-values
+  values:
+    controller:
+      service:
+        type: LoadBalancer
+

@@ -1,0 +1,11 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: wordpress
+spec:
+  interval: 5m
+  path: "./apps/wordpress"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
