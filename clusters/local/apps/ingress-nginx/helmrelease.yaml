@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: ingress-nginx
         namespace: flux-system
-  valuesFrom:
-    - kind: ConfigMap
-      name: ingress-nginx-values
+  values:
+    controller:
+      service:
+        type: LoadBalancer
